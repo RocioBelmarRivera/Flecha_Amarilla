@@ -215,6 +215,12 @@ public class JFPasajero extends javax.swing.JFrame {
             }
         });
 
+        jTFTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFTipoActionPerformed(evt);
+            }
+        });
+
         jTpasajero.setBackground(new java.awt.Color(204, 204, 255));
         jTpasajero.setFont(new java.awt.Font("Segoe UI Historic", 0, 12)); // NOI18N
         jTpasajero.setForeground(new java.awt.Color(51, 51, 51));
@@ -399,6 +405,10 @@ public class JFPasajero extends javax.swing.JFrame {
         // TODO add your handling code here:
         limpiar_tabla();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTFTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFTipoActionPerformed
 
     /**
      * @param args the command line arguments

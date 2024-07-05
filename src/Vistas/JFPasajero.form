@@ -235,6 +235,9 @@
         <Component class="javax.swing.JTextField" name="jTFCorreo">
         </Component>
         <Component class="javax.swing.JTextField" name="jTFTipo">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFTipoActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>

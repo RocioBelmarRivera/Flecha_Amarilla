@@ -16,12 +16,12 @@ public class CModelosPasajero {
     //****************** Metodos*************
 
     public ArrayList<String[]> busca_objetos_model() throws SQLException {
-        consulta = "SELECT * FROM auto WHERE 1";
+        consulta = "SELECT * FROM pasajero WHERE 1";
         return mngr.buscar_objetos(consulta);
     }
 
     public ArrayList<String[]> busca_objeto_id_model(int valor) throws SQLException {
-        consulta = "SELECT * FROM pasajero WHERE auto.id = " + valor;
+        consulta = "SELECT * FROM pasajero WHERE pasajero.id_pasajero = " + valor;
         return mngr.buscar_objetos(consulta);
     }
 
@@ -38,7 +38,7 @@ public class CModelosPasajero {
                 " apellido_m = '"+ AM+"', "+
                 " correo = '"+ correo+"', "+
                 " tipo = '"+tipo+"' " +
-                "WHERE auto.id= "+id;
+                "WHERE pasajero.id_pasajero= "+id;
         return mngr.actualiza_objeto(consulta);
     }
     

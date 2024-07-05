@@ -42,6 +42,7 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
         jBRutas = new javax.swing.JButton();
         jBPasajero = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jBBoleto1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,20 +87,18 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jBBoleto1.setBackground(new java.awt.Color(255, 204, 204));
+        jBBoleto1.setText("MARCA");
+        jBBoleto1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBBoleto1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBBoleto)
-                    .addComponent(jBConductor))
-                .addGap(63, 63, 63)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBPasajero, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBRutas, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,6 +108,19 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(39, 39, 39))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBBoleto1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBConductor)
+                            .addComponent(jBBoleto))
+                        .addGap(63, 63, 63)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBPasajero, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jBRutas, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBBoleto, jBConductor, jBPasajero, jBRutas, jButton1});
@@ -123,10 +135,12 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
                     .addComponent(jBConductor)
                     .addComponent(jBPasajero))
                 .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBRutas)
                     .addComponent(jBBoleto, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jBBoleto1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(32, 32, 32))
         );
@@ -149,6 +163,10 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
 
     private void jBPasajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPasajeroActionPerformed
         // TODO add your handling code here:
+        JFPasajero cliente = new JFPasajero();
+        cliente.setVisible(true);
+        cliente.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_jBPasajeroActionPerformed
 
     private void jBConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConductorActionPerformed
@@ -168,6 +186,14 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jBBoleto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBoleto1ActionPerformed
+        // TODO add your handling code here:
+        JFMarca cliente = new JFMarca();
+        cliente.setVisible(true);
+        cliente.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_jBBoleto1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,6 +232,7 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBBoleto;
+    private javax.swing.JButton jBBoleto1;
     private javax.swing.JButton jBConductor;
     private javax.swing.JButton jBPasajero;
     private javax.swing.JButton jBRutas;
