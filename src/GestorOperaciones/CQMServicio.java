@@ -1,4 +1,9 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package GestorOperaciones;
+
 import Conector.CConector;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,8 +14,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import utilitarios.CUtilitarios;
 
-public class CQManager {
-    private Connection conn = null;
+/**
+ *
+ * @author yoong
+ */
+public class CQMServicio {
+     private Connection conn = null;
     private Statement stmt = null;
     private ResultSet rs = null;
     private final CConector conector = new CConector();
@@ -32,8 +41,6 @@ public class CQManager {
                     resultados.add(new String[]{
                         rs.getString(1),
                         rs.getString(2),
-                        rs.getString(3),
-                        rs.getString(4)
                     });
                 }
             }
@@ -114,5 +121,4 @@ public class CQManager {
         }
         System.out.println("...................");
     }
-    
 }
