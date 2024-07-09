@@ -48,7 +48,8 @@ public class JFEstado extends javax.swing.JFrame {
             for (String[] resultado : resultados) {
                 //añadirle datos al modelo de la tabla
                 modelTabla.addRow(new Object[]{
-                    resultado[0]
+                    resultado[0],
+                    resultado[1]
                     });
             }
         } catch (SQLException e) {
@@ -103,7 +104,6 @@ public class JFEstado extends javax.swing.JFrame {
                 = (DefaultTableModel) jTEstado.getModel();
         if (campos_vacios()) {
             CUtilitarios.msg_adver("campos vacios", "actualizar datos");
-
         } else {
 
             try {
@@ -115,7 +115,7 @@ public class JFEstado extends javax.swing.JFrame {
             }
 
         }
-
+        limpiar_campos();
     }
 
     public JFEstado() {
@@ -174,6 +174,11 @@ public class JFEstado extends javax.swing.JFrame {
                 "Id", "Nombre"
             }
         ));
+        jTEstado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTEstadoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTEstado);
 
         jButton1.setBackground(new java.awt.Color(255, 51, 51));
@@ -262,7 +267,7 @@ public class JFEstado extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
-                        .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(152, 152, 152)
@@ -328,6 +333,11 @@ public class JFEstado extends javax.swing.JFrame {
         cliente.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTEstadoMouseClicked
+        // TODO add your handling code here:
+        lee_fila_seleccionada();
+    }//GEN-LAST:event_jTEstadoMouseClicked
 
     /**
      * @param args the command line arguments

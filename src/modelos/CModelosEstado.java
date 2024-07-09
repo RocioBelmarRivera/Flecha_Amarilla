@@ -4,7 +4,7 @@
  */
 package modelos;
 
-import GestorOperaciones.CQManager;
+import GestorOperaciones.CQMEstado;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class CModelosEstado {
     
     //****************** Atributos***********
-    private final CQManager mngr = new CQManager();
+    private final CQMEstado mngr = new CQMEstado();
     private String consulta;
     //****************** Metodos*************
 
@@ -30,7 +30,7 @@ public class CModelosEstado {
     }
 
     public boolean inserta_objeto_model(String nombre) throws SQLException {
-        consulta = "INSERT INTO `estado`(`id`, `nombre`)"
+        consulta = "INSERT INTO `estado`(`id_estado`, `nombre`)"
                 + "VALUES (null,'" + nombre + "');";
         return mngr.inserta_objeto(consulta);
     }
@@ -38,7 +38,7 @@ public class CModelosEstado {
 
     public boolean actualiza_objeto_model(int id, String nombre) throws SQLException {
         consulta = "UPDATE estado SET nombre='"+nombre+"', " +
-                "' " + "WHERE estado.id_estado= "+id;
+                  "WHERE estado.id_estado= "+id;
         return mngr.actualiza_objeto(consulta);
     }
     

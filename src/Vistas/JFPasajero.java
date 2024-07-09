@@ -13,9 +13,24 @@ public class JFPasajero extends javax.swing.JFrame {
     private CQManager mngr = new CQManager();
     CModelosPasajero modelos = new CModelosPasajero();
     ArrayList<String[]> resultados = new ArrayList<>();
+    ArrayList<String[]> tipo = new ArrayList<>();
     int numero;
 
     //***************************METODOS PROPIOS****************************
+    private void combo_box() {
+        try {
+            Tipo.removeAllItems();
+            tipo = modelos.carga_tipo_pasajero();
+            for (String[] opciones : tipo) {
+                int id = Integer.parseInt(opciones[0]);
+                String tipo = opciones[1];
+                String cadena = id + "  " + tipo;
+                Tipo.addItem(cadena);
+            }
+        } catch (Exception e) {
+        }
+    }
+
     private void limpiar_campos() {
         jTFNombre.setText("");
         jTFAP.setText("");
@@ -60,7 +75,8 @@ public class JFPasajero extends javax.swing.JFrame {
                     resultado[2],
                     resultado[3],
                     resultado[4],
-                    resultado[5]});
+                    resultado[5]
+                });
 
             }
         } catch (SQLException e) {
@@ -68,45 +84,6 @@ public class JFPasajero extends javax.swing.JFrame {
 
     }
 
-    /*
-    private void inserta_datos() {
-
-        if (campos_vacios()) {
-            CUtilitarios.msg_adver("hay campos vacios", "Inserta datos");
-
-        } else {
-            //1.obteniendo los datos del cuadro de texto
-            String nombre = jTFNombre.getText();
-            String AP = jTFAP.getText();
-            String AM = jTFAM.getText();
-            String correo = jTFCorreo.getText();
-          //  int tipo = Integer.parseInt(mngr.datos()[0]);
-            //  int tipo= Tipo.
-            // String tipo = jTFTipo.getText();
-            //2.inserta datos
-            
-            
-            int tipo; // Valor por defecto o inicialización adecuada
-        try {
-            tipo = Integer.parseInt(mngr.datos()[0]); // Convertir a entero
-        } catch (NumberFormatException e) {
-            CUtilitarios.msg_adver("Tipo no válido", "Insertar datos");
-            return; // Salir del método si no se puede convertir
-        }
-            try {
-                if (modelos.inserta_objeto_model(nombre, AP, AM, correo, tipo)) {
-                    //CUtilitarios.msg("insercion correcta", "inserta dato");
-                } else {
-                    CUtilitarios.msg_adver("problemas al insertar", "insertar datos");
-                }
-                limpiar_campos();
-                lee_datos();
-            } catch (Exception e) {
-            }
-        }
-
-    }
-     */
     private void inserta_datos() {
         if (campos_vacios()) {
             CUtilitarios.msg_adver("Hay campos vacíos", "Inserta datos");
@@ -117,28 +94,13 @@ public class JFPasajero extends javax.swing.JFrame {
             String AM = jTFAM.getText();
             String correo = jTFCorreo.getText();
 
-            // 2. Obtener el tipo seleccionado del ComboBox y separar el primer campo
-            int tipo; // Declarar la variable tipo
-
-            try {
-                // Obtener el texto seleccionado del ComboBox
-                String textoSeleccionado = (String) Tipo.getSelectedItem();
-
-                // Separar el primer campo (antes del primer " - ")
-                String primerCampo = textoSeleccionado.split(" - ")[0];
-
-                // Convertir el primer campo a entero
-                tipo = Integer.parseInt(primerCampo);
-            } catch (NumberFormatException | NullPointerException e) {
-                CUtilitarios.msg_adver("Tipo no válido", "Insertar datos");
-                return; // Salir del método si hay un problema con la conversión o si el ComboBox no tiene selección válida
-            }
-
+//            // 2. Obtener el tipo seleccionado del ComboBox y separar el primer campo
+//            int tipo; // Declarar la variable tip0
             // 3. Insertar datos usando el tipo obtenido
             try {
-                if (modelos.inserta_objeto_model(nombre, AP, AM, correo, tipo)) {
+                if (modelos.inserta_objeto_model(nombre, AP, AM, correo, Tipo.getSelectedIndex() + 1)) {
                     // Mensaje de inserción correcta si deseas
-                    // CUtilitarios.msg("Inserción correcta", "Inserta dato");
+                    CUtilitarios.msg("Inserción correcta", "Inserta dato");
                 } else {
                     CUtilitarios.msg_adver("Problemas al insertar", "Insertar datos");
                 }
@@ -168,74 +130,67 @@ public class JFPasajero extends javax.swing.JFrame {
         }
         return id;
     }
-/*
-    private void actualiza_datos() {
-        int id;
-        DefaultTableModel modelTabla
-                = (DefaultTableModel) jTpasajero.getModel();
-        if (campos_vacios()) {
-            CUtilitarios.msg_adver("campos vacios", "actualizar datos");
-        } else {
 
+    private void actualiza_datos1() {
+        int id;
+        DefaultTableModel modelTabla = (DefaultTableModel) jTpasajero.getModel();
+
+        if (campos_vacios()) {
+            CUtilitarios.msg_adver("Campos vacíos", "Actualizar datos");
+        } else {
             try {
+                // Obtener el ID desde la tabla
                 id = Integer.parseInt((String) modelTabla.getValueAt(jTpasajero.getSelectedRow(), 0));
+
+                // Obtener el nombre, AP, AM, correo desde los campos de texto
                 String nombre = jTFNombre.getText();
                 String AP = jTFAP.getText();
                 String AM = jTFAM.getText();
                 String correo = jTFCorreo.getText();
-                //     String tipo = jTFTipo.getText();
-                modelos.actualiza_objeto_model(id, nombre, AP, AM, correo, tipo);
+
+                // Actualizar el modelo con los nuevos datos
+                modelos.actualiza_objeto_model(id, nombre, AP, AM, correo, Tipo.getSelectedIndex() + 1);
+
+                // Volver a cargar los datos en la tabla
                 lee_datos();
             } catch (Exception e) {
+                // Manejo de excepciones si es necesario
             }
-
         }
+        limpiar_campos();
     }
-*/
-    
-    private void actualiza_datos1() {
-    int id;
-    DefaultTableModel modelTabla = (DefaultTableModel) jTpasajero.getModel();
-    
-    if (campos_vacios()) {
-        CUtilitarios.msg_adver("Campos vacíos", "Actualizar datos");
-    } else {
-        try {
-            // Obtener el ID desde la tabla
-            id = Integer.parseInt((String) modelTabla.getValueAt(jTpasajero.getSelectedRow(), 0));
-            
-            // Obtener el nombre, AP, AM, correo desde los campos de texto
-            String nombre = jTFNombre.getText();
-            String AP = jTFAP.getText();
-            String AM = jTFAM.getText();
-            String correo = jTFCorreo.getText();
-            
-            // Obtener el tipo seleccionado del ComboBox
-            int tipo;
-            try {
-                String tipoSeleccionado = (String) Tipo.getSelectedItem();
-                tipo = Integer.parseInt(tipoSeleccionado.split(" - ")[0]); // Obtener el primer campo antes de " - "
-            } catch (NumberFormatException | NullPointerException e) {
-                CUtilitarios.msg_adver("Tipo no válido", "Actualizar datos");
-                return; // Salir del método si hay un problema con el tipo seleccionado
+
+    private void elimina_dato() {
+        int idEliminar;
+        //obtener el modelo de la tabla
+        DefaultTableModel modelTabla
+                = (DefaultTableModel) jTpasajero.getModel();
+        //si la cantidaxd de filas es direfente de 0
+        if (modelTabla.getRowCount() != 0) {//TABLA CON FILAS
+            if (jTpasajero.getSelectedRow() != -1) {
+                idEliminar = Integer.parseInt((String) modelTabla.getValueAt(jTpasajero.getSelectedRow(), 0));
+                System.out.println(" " + idEliminar);//prueba
+                try {
+                    if (modelos.elimina_objeto_model(idEliminar)) {
+                        CUtilitarios.msg("Eliminacion correcta", "Elimina datos");
+                    }
+                    lee_datos();
+                } catch (Exception e) {
+                }
+            } else {
             }
-            
-            // Actualizar el modelo con los nuevos datos
-            modelos.actualiza_objeto_model(id, nombre, AP, AM, correo, tipo);
-            
-            // Volver a cargar los datos en la tabla
-            lee_datos();
-        } catch (Exception e) {
-            // Manejo de excepciones si es necesario
+        } else {//SI LA TABLA NO TIENE FILAS
+            CUtilitarios.msg_adver("TABLA VACIA", "ELIMINA DATO");
         }
+        limpiar_campos();
     }
-}
-
+    
     
     
     public JFPasajero() {
         initComponents();
-        mngr.rellenar_combo(Tipo);
+        combo_box();
+//        mngr.rellenar_combo("tipo", "nombre", Tipo);
     }
 
     /**
@@ -267,6 +222,7 @@ public class JFPasajero extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         Tipo = new javax.swing.JComboBox<>();
+        jButton6 = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -382,6 +338,16 @@ public class JFPasajero extends javax.swing.JFrame {
             }
         });
 
+        jButton6.setBackground(new java.awt.Color(102, 102, 255));
+        jButton6.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 14)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("Eliminar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -405,14 +371,11 @@ public class JFPasajero extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(16, 16, 16)
                                 .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTFAP, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                                        .addComponent(jTFAM)
-                                        .addComponent(jTFCorreo)))))
+                            .addComponent(Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTFAP, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                                .addComponent(jTFAM)
+                                .addComponent(jTFCorreo)))
                         .addGap(107, 107, 107))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
@@ -426,7 +389,8 @@ public class JFPasajero extends javax.swing.JFrame {
                             .addComponent(jButton2)
                             .addComponent(jButton3)
                             .addComponent(jButton4)
-                            .addComponent(jButton5)))
+                            .addComponent(jButton5)
+                            .addComponent(jButton6)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jButton1)))
@@ -474,6 +438,8 @@ public class JFPasajero extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton4)
                         .addGap(18, 18, 18)
+                        .addComponent(jButton6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton5))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47))
@@ -531,7 +497,14 @@ public class JFPasajero extends javax.swing.JFrame {
 
     private void jTpasajeroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTpasajeroMouseClicked
         // TODO add your handling code here:
+        lee_fila_seleccionada();
     }//GEN-LAST:event_jTpasajeroMouseClicked
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        elimina_dato();
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -575,6 +548,7 @@ public class JFPasajero extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
