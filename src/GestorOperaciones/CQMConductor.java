@@ -1,3 +1,4 @@
+
 package GestorOperaciones;
 
 import Conector.CConector;
@@ -8,19 +9,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
-import javax.swing.JComboBox;
 import utilitarios.CUtilitarios;
 
-public class CQManager {
 
+public class CQMConductor {
     private Connection conn = null;
     private Statement stmt = null;
     private ResultSet rs = null;
     private final CConector conector = new CConector();
     private ArrayList<String[]> resultados;
-    private String[] datos = new String[2];
 
     //***************** METODOS **************
+    
     public ArrayList<String[]> buscar_objetos(String consulta) throws SQLException {
         //1. Abrir la conexion 
         conn = conector.conectar();
@@ -35,11 +35,8 @@ public class CQManager {
                 while (rs.next()) {
                     resultados.add(new String[]{
                         rs.getString(1),
-                        rs.getString(2),
-                        rs.getString(3),
-                        rs.getString(4),
-                        rs.getString(5),
-                        rs.getString(6),});
+                        rs.getString(2)
+                    });
                 }
             }
         } catch (SQLException ex) {
@@ -64,7 +61,7 @@ public class CQManager {
         return resultados;
     }
 
-    public boolean inserta_objeto(String consulta) throws SQLException {
+    public boolean inserta_objeto( String consulta) throws SQLException {
         //1. abrir la conexion
         conn = conector.conectar();
         //2.- ejecutar la query
@@ -114,72 +111,11 @@ public class CQManager {
     }
 
     public void imprime_resultados(ArrayList<String[]> resultados) {
-        for (int i = 0; i < resultados.size(); i++) {
-            System.out.println(i + " " + Arrays.toString(resultados.get(i)));
+        for (int i=0 ;i<resultados.size();i++) {
+            System.out.println(i + " "+ Arrays.toString(resultados.get(i)));
         }
         System.out.println("...................");
     }
-
-    /* public void rellenar_combo(JComboBox combo){
-        String texto;
-        String sql= "Select * from tipo";
-        conn=conector.conectar();
-        try {
-            stmt=conn.createStatement();
-            rs=stmt.executeQuery(sql);
-            
-            while (rs.next()) {
-                datos[0]=rs.getString(1);
-                datos[1]=rs.getString(2);
-                texto=datos[0]+" - "+datos[1];
-                combo.addItem(texto);
-                //combo.addItem(rs.getString(valor));
-            }
-        } catch (SQLException e) {
-            CUtilitarios.msg_error("ERROR AL RELLENAR EL COMBO", "RELLENAR_COMBO");
-        }
-    }
-    public String[] datos(){
-            return datos;
-        }
-
-     public void setDatos(String[] datos) {
-        this.datos = datos;
-    }
-     */
-    public void rellenar_combo(JComboBox combo) {
-        String sql = "SELECT * FROM tipo";
-        conn = conector.conectar();
-        try {
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-
-            combo.removeAllItems(); // Limpiar items existentes en el ComboBox
-
-            while (rs.next()) {
-                String dato1 = rs.getString(1); // Obtener el primer campo (por ejemplo, "1")
-                String dato2 = rs.getString(2); // Obtener el segundo campo (por ejemplo, "Estudiante")
-                String textoCompleto = dato1 + " - " + dato2; // Concatenar ambos valores
-                combo.addItem(textoCompleto); // Agregar al ComboBox el texto completo
-            }
-        } catch (SQLException e) {
-            CUtilitarios.msg_error("ERROR AL RELLENAR EL COMBO", "RELLENAR_COMBO");
-        } finally {
-            // Cerrar recursos (ResultSet, Statement, Connection) en el bloque finally si es necesario
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (stmt != null) {
-                    stmt.close();
-                }
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
 }
+
+

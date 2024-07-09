@@ -1,42 +1,35 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Vistas;
 
+import GestorOperaciones.CQManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import modelos.CModelosPasajero;
 import utilitarios.CUtilitarios;
 
-/**
- *
- * @author yoong
- */
 public class JFPasajero extends javax.swing.JFrame {
 
     //permitir llamar las cconsultas de los modelos
+    private CQManager mngr = new CQManager();
     CModelosPasajero modelos = new CModelosPasajero();
     ArrayList<String[]> resultados = new ArrayList<>();
     int numero;
-    
-    //***************************METODOS PROPIOS****************************
 
+    //***************************METODOS PROPIOS****************************
     private void limpiar_campos() {
         jTFNombre.setText("");
         jTFAP.setText("");
         jTFAM.setText("");
         jTFCorreo.setText("");
-        jTFTipo.setText("");
+        //  jTFTipo.setText("");
     }
 
     private boolean campos_vacios() {
         return (jTFNombre.getText().isEmpty()
                 || jTFAP.getText().isEmpty()
                 || jTFAM.getText().isEmpty()
-                || jTFCorreo.getText().isEmpty()
-                || jTFTipo.getText().isEmpty());
+                || jTFCorreo.getText().isEmpty() //|| jTFTipo.getText().isEmpty()
+                );
 
     }
 
@@ -49,7 +42,7 @@ public class JFPasajero extends javax.swing.JFrame {
     }
 
     private void lee_datos() {
-        numero = 1;
+        //numero = 1;
         //2. obtener el modelo de la tabla de datos 
         DefaultTableModel modelTabla
                 = (DefaultTableModel) jTpasajero.getModel();
@@ -66,7 +59,8 @@ public class JFPasajero extends javax.swing.JFrame {
                     resultado[1],
                     resultado[2],
                     resultado[3],
-                    resultado[4]});
+                    resultado[4],
+                    resultado[5]});
 
             }
         } catch (SQLException e) {
@@ -74,6 +68,7 @@ public class JFPasajero extends javax.swing.JFrame {
 
     }
 
+    /*
     private void inserta_datos() {
 
         if (campos_vacios()) {
@@ -85,8 +80,19 @@ public class JFPasajero extends javax.swing.JFrame {
             String AP = jTFAP.getText();
             String AM = jTFAM.getText();
             String correo = jTFCorreo.getText();
-            String tipo = jTFTipo.getText();
+          //  int tipo = Integer.parseInt(mngr.datos()[0]);
+            //  int tipo= Tipo.
+            // String tipo = jTFTipo.getText();
             //2.inserta datos
+            
+            
+            int tipo; // Valor por defecto o inicialización adecuada
+        try {
+            tipo = Integer.parseInt(mngr.datos()[0]); // Convertir a entero
+        } catch (NumberFormatException e) {
+            CUtilitarios.msg_adver("Tipo no válido", "Insertar datos");
+            return; // Salir del método si no se puede convertir
+        }
             try {
                 if (modelos.inserta_objeto_model(nombre, AP, AM, correo, tipo)) {
                     //CUtilitarios.msg("insercion correcta", "inserta dato");
@@ -100,8 +106,49 @@ public class JFPasajero extends javax.swing.JFrame {
         }
 
     }
+     */
+    private void inserta_datos() {
+        if (campos_vacios()) {
+            CUtilitarios.msg_adver("Hay campos vacíos", "Inserta datos");
+        } else {
+            // 1. Obtener los datos del cuadro de texto
+            String nombre = jTFNombre.getText();
+            String AP = jTFAP.getText();
+            String AM = jTFAM.getText();
+            String correo = jTFCorreo.getText();
 
-    
+            // 2. Obtener el tipo seleccionado del ComboBox y separar el primer campo
+            int tipo; // Declarar la variable tipo
+
+            try {
+                // Obtener el texto seleccionado del ComboBox
+                String textoSeleccionado = (String) Tipo.getSelectedItem();
+
+                // Separar el primer campo (antes del primer " - ")
+                String primerCampo = textoSeleccionado.split(" - ")[0];
+
+                // Convertir el primer campo a entero
+                tipo = Integer.parseInt(primerCampo);
+            } catch (NumberFormatException | NullPointerException e) {
+                CUtilitarios.msg_adver("Tipo no válido", "Insertar datos");
+                return; // Salir del método si hay un problema con la conversión o si el ComboBox no tiene selección válida
+            }
+
+            // 3. Insertar datos usando el tipo obtenido
+            try {
+                if (modelos.inserta_objeto_model(nombre, AP, AM, correo, tipo)) {
+                    // Mensaje de inserción correcta si deseas
+                    // CUtilitarios.msg("Inserción correcta", "Inserta dato");
+                } else {
+                    CUtilitarios.msg_adver("Problemas al insertar", "Insertar datos");
+                }
+                limpiar_campos();
+                lee_datos();
+            } catch (Exception e) {
+                // Manejo de excepciones si es necesario
+            }
+        }
+    }
 
     private int lee_fila_seleccionada() {
         int id = -1;
@@ -114,40 +161,81 @@ public class JFPasajero extends javax.swing.JFrame {
                 jTFAP.setText((String) modelTabla.getValueAt(jTpasajero.getSelectedRow(), 2));
                 jTFAM.setText((String) modelTabla.getValueAt(jTpasajero.getSelectedRow(), 3));
                 jTFCorreo.setText((String) modelTabla.getValueAt(jTpasajero.getSelectedRow(), 4));
-                jTFTipo.setText((String) modelTabla.getValueAt(jTpasajero.getSelectedRow(), 5));
+                //  jTFTipo.setText((String) modelTabla.getValueAt(jTpasajero.getSelectedRow(), 5));
 
             }
 
         }
         return id;
     }
-
+/*
     private void actualiza_datos() {
         int id;
-         DefaultTableModel modelTabla
+        DefaultTableModel modelTabla
                 = (DefaultTableModel) jTpasajero.getModel();
         if (campos_vacios()) {
             CUtilitarios.msg_adver("campos vacios", "actualizar datos");
-
         } else {
 
             try {
-                 id = Integer.parseInt((String) modelTabla.getValueAt(jTpasajero.getSelectedRow(), 0));
+                id = Integer.parseInt((String) modelTabla.getValueAt(jTpasajero.getSelectedRow(), 0));
                 String nombre = jTFNombre.getText();
                 String AP = jTFAP.getText();
                 String AM = jTFAM.getText();
                 String correo = jTFCorreo.getText();
-                String tipo = jTFTipo.getText();
+                //     String tipo = jTFTipo.getText();
                 modelos.actualiza_objeto_model(id, nombre, AP, AM, correo, tipo);
                 lee_datos();
             } catch (Exception e) {
             }
 
         }
-
     }
+*/
+    
+    private void actualiza_datos1() {
+    int id;
+    DefaultTableModel modelTabla = (DefaultTableModel) jTpasajero.getModel();
+    
+    if (campos_vacios()) {
+        CUtilitarios.msg_adver("Campos vacíos", "Actualizar datos");
+    } else {
+        try {
+            // Obtener el ID desde la tabla
+            id = Integer.parseInt((String) modelTabla.getValueAt(jTpasajero.getSelectedRow(), 0));
+            
+            // Obtener el nombre, AP, AM, correo desde los campos de texto
+            String nombre = jTFNombre.getText();
+            String AP = jTFAP.getText();
+            String AM = jTFAM.getText();
+            String correo = jTFCorreo.getText();
+            
+            // Obtener el tipo seleccionado del ComboBox
+            int tipo;
+            try {
+                String tipoSeleccionado = (String) Tipo.getSelectedItem();
+                tipo = Integer.parseInt(tipoSeleccionado.split(" - ")[0]); // Obtener el primer campo antes de " - "
+            } catch (NumberFormatException | NullPointerException e) {
+                CUtilitarios.msg_adver("Tipo no válido", "Actualizar datos");
+                return; // Salir del método si hay un problema con el tipo seleccionado
+            }
+            
+            // Actualizar el modelo con los nuevos datos
+            modelos.actualiza_objeto_model(id, nombre, AP, AM, correo, tipo);
+            
+            // Volver a cargar los datos en la tabla
+            lee_datos();
+        } catch (Exception e) {
+            // Manejo de excepciones si es necesario
+        }
+    }
+}
+
+    
+    
     public JFPasajero() {
         initComponents();
+        mngr.rellenar_combo(Tipo);
     }
 
     /**
@@ -171,13 +259,14 @@ public class JFPasajero extends javax.swing.JFrame {
         jTFAP = new javax.swing.JTextField();
         jTFAM = new javax.swing.JTextField();
         jTFCorreo = new javax.swing.JTextField();
-        jTFTipo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTpasajero = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        Tipo = new javax.swing.JComboBox<>();
 
         jTextField1.setText("jTextField1");
 
@@ -215,12 +304,6 @@ public class JFPasajero extends javax.swing.JFrame {
             }
         });
 
-        jTFTipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFTipoActionPerformed(evt);
-            }
-        });
-
         jTpasajero.setBackground(new java.awt.Color(204, 204, 255));
         jTpasajero.setFont(new java.awt.Font("Segoe UI Historic", 0, 12)); // NOI18N
         jTpasajero.setForeground(new java.awt.Color(51, 51, 51));
@@ -237,6 +320,11 @@ public class JFPasajero extends javax.swing.JFrame {
                 "Id", "Nombre", "Apellido P", "Apellido M", "Correo", "Tipo"
             }
         ));
+        jTpasajero.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTpasajeroMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTpasajero);
 
         jButton1.setBackground(new java.awt.Color(102, 102, 255));
@@ -279,6 +367,21 @@ public class JFPasajero extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setBackground(new java.awt.Color(102, 102, 255));
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("Salir");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        Tipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TipoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -286,40 +389,51 @@ public class JFPasajero extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(29, 29, 29)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(16, 16, 16)
                                 .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTFAP, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                                    .addComponent(jTFAM)
-                                    .addComponent(jTFCorreo)
-                                    .addComponent(jTFTipo))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jTFAP, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                                        .addComponent(jTFAM)
+                                        .addComponent(jTFCorreo)))))
                         .addGap(107, 107, 107))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(139, 139, 139)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2)
+                            .addComponent(jButton3)
+                            .addComponent(jButton4)
+                            .addComponent(jButton5)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jButton1)))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2, jButton3, jButton4});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2, jButton3, jButton4, jButton5});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,30 +441,25 @@ public class JFPasajero extends javax.swing.JFrame {
                 .addGap(49, 49, 49)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(86, 86, 86)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel7))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTFAP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTFAM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)))
-                        .addComponent(jTFCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTFTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTFAP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTFAM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTFCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(33, Short.MAX_VALUE)
@@ -358,12 +467,14 @@ public class JFPasajero extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(118, 118, 118)
                         .addComponent(jButton1)
-                        .addGap(27, 27, 27)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
                         .addComponent(jButton3)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4))
+                        .addComponent(jButton4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton5))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47))
         );
@@ -393,7 +504,7 @@ public class JFPasajero extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        actualiza_datos();
+        actualiza_datos1();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -406,9 +517,21 @@ public class JFPasajero extends javax.swing.JFrame {
         limpiar_tabla();
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jTFTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFTipoActionPerformed
+    private void TipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTFTipoActionPerformed
+    }//GEN-LAST:event_TipoActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        JFVistaPrincipal cliente = new JFVistaPrincipal();
+        cliente.setVisible(true);
+        cliente.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTpasajeroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTpasajeroMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTpasajeroMouseClicked
 
     /**
      * @param args the command line arguments
@@ -446,10 +569,12 @@ public class JFPasajero extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> Tipo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -462,7 +587,6 @@ public class JFPasajero extends javax.swing.JFrame {
     private javax.swing.JTextField jTFAP;
     private javax.swing.JTextField jTFCorreo;
     private javax.swing.JTextField jTFNombre;
-    private javax.swing.JTextField jTFTipo;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTable jTpasajero;
     // End of variables declaration//GEN-END:variables

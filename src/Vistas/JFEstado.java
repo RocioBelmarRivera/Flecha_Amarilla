@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Vistas;
 
 import java.sql.SQLException;
@@ -11,10 +8,6 @@ import modelos.CModelosEstado;
 import modelos.CModelosPasajero;
 import utilitarios.CUtilitarios;
 
-/**
- *
- * @author yoong
- */
 public class JFEstado extends javax.swing.JFrame {
   //permitir llamar las cconsultas de los modelos
     CModelosEstado modelos = new CModelosEstado();
@@ -57,7 +50,6 @@ public class JFEstado extends javax.swing.JFrame {
                 modelTabla.addRow(new Object[]{
                     resultado[0]
                     });
-
             }
         } catch (SQLException e) {
         }
@@ -149,6 +141,7 @@ public class JFEstado extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -170,7 +163,6 @@ public class JFEstado extends javax.swing.JFrame {
 
         jTEstado.setBackground(new java.awt.Color(255, 204, 204));
         jTEstado.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
-        jTEstado.setForeground(new java.awt.Color(0, 0, 0));
         jTEstado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -225,6 +217,16 @@ public class JFEstado extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setBackground(new java.awt.Color(255, 51, 51));
+        jButton5.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("Salir");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -246,11 +248,12 @@ public class JFEstado extends javax.swing.JFrame {
                             .addComponent(jButton1)
                             .addComponent(jButton2)
                             .addComponent(jButton3)
-                            .addComponent(jButton4))
+                            .addComponent(jButton4)
+                            .addComponent(jButton5))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2, jButton3, jButton4});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2, jButton3, jButton4, jButton5});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,8 +271,10 @@ public class JFEstado extends javax.swing.JFrame {
                         .addComponent(jButton2)
                         .addGap(35, 35, 35)
                         .addComponent(jButton3)
-                        .addGap(36, 36, 36)
+                        .addGap(32, 32, 32)
                         .addComponent(jButton4)
+                        .addGap(32, 32, 32)
+                        .addComponent(jButton5)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
@@ -316,6 +321,14 @@ public class JFEstado extends javax.swing.JFrame {
         limpiar_tabla();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        JFVistaPrincipal cliente = new JFVistaPrincipal();
+        cliente.setVisible(true);
+        cliente.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -356,6 +369,7 @@ public class JFEstado extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

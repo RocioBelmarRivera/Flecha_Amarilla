@@ -1,12 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package modelos;
 
 import GestorOperaciones.CQManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JComboBox;
 
 
 public class CModelosPasajero {
@@ -25,21 +23,24 @@ public class CModelosPasajero {
         return mngr.buscar_objetos(consulta);
     }
 
-    public boolean inserta_objeto_model(String nombre,String AP,String AM, String correo, String tipo) throws SQLException {
-        consulta = "INSERT INTO `pasajero`(`id`, `nombre`, `apellido_p`, `apellido_m`,`correo`,`tipo` )"
-                + "VALUES (null,'" + nombre + "','" + AP + "','" + AM +"','"+correo+"','"+tipo+ "');";
+    public boolean inserta_objeto_model(String nombre,String AP,String AM, String correo, int tipo) throws SQLException {
+        consulta = "INSERT INTO `pasajero`(`id_pasajero`, `nombre`, `apellido_p`, `apellido_m`,`correo`,`id_tipo` )"
+                + "VALUES (null,'" + nombre + "','" + AP + "','" + AM +"','"+correo+"',"+tipo+ ");";
         return mngr.inserta_objeto(consulta);
     }
 
 
-    public boolean actualiza_objeto_model(int id, String nombre,String AP,String AM, String correo, String tipo) throws SQLException {
+    public boolean actualiza_objeto_model(int id, String nombre,String AP,String AM, String correo, int tipo) throws SQLException {
         consulta = "UPDATE pasajero SET nombre='"+nombre+"', " +
                 " apellido_p = '"+ AP+"', "+
                 " apellido_m = '"+ AM+"', "+
                 " correo = '"+ correo+"', "+
-                " tipo = '"+tipo+"' " +
+                " id_tipo = "+tipo+" " +
                 "WHERE pasajero.id_pasajero= "+id;
         return mngr.actualiza_objeto(consulta);
     }
+    
+    
+    
     
 }

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Vistas;
 
 import java.sql.SQLException;
@@ -10,10 +6,6 @@ import javax.swing.table.DefaultTableModel;
 import modelos.CModelosConductor;
 import utilitarios.CUtilitarios;
 
-/**
- *
- * @author rocio
- */
 public class JFConductor extends javax.swing.JFrame {
 //PERMITE LLAMAR LAS CONSULTAS DE LOS MODELOS
 
@@ -61,7 +53,6 @@ public class JFConductor extends javax.swing.JFrame {
                     resultado[2],
                     resultado[3]});
             }
-
         } catch (SQLException e) {
         }
     }
@@ -116,7 +107,7 @@ public class JFConductor extends javax.swing.JFrame {
     }
 
     private int lee_fila_seleccionada() {
-        int id=-1;
+        int id = -1;
         DefaultTableModel modelTabla
                 = (DefaultTableModel) jTDatos.getModel();
         if (modelTabla.getRowCount() != 0) {//TABLA CON FILAS
@@ -126,13 +117,6 @@ public class JFConductor extends javax.swing.JFrame {
                 jTFNombre.setText((String) modelTabla.getValueAt(jTDatos.getSelectedRow(), 1));
                 jTFApellidoP.setText((String) modelTabla.getValueAt(jTDatos.getSelectedRow(), 2));
                 jTFApellidoM.setText((String) modelTabla.getValueAt(jTDatos.getSelectedRow(), 3));
-                /* try {
-                    if (modelos.elimina_objeto_model(idEliminar)) {
-                        CUtilitarios.msg("Eliminacion correcta", "Elimina datos");
-                    }
-                    lee_datos();
-                } catch (Exception e) {
-                }*/
             } else {
             }
         } else {//SI LA TABLA NO TIENE FILAS
@@ -141,18 +125,18 @@ public class JFConductor extends javax.swing.JFrame {
         return id;
     }
 
-    private void actualiza_dato() {
+    private void actualiza_dato()  {
         int id;
-         DefaultTableModel modelTabla
+        DefaultTableModel modelTabla
                 = (DefaultTableModel) jTDatos.getModel();
         if (campos_vacios()) {
             CUtilitarios.msg_adver("Datos vacios", "Actualiza datos");
         } else {
             try {
-                 id = Integer.parseInt((String) modelTabla.getValueAt(jTDatos.getSelectedRow(), 0));
-                String marca=jTFNombre.getText();
-                String modelo=jTFApellidoP.getText();
-                String color=jTFApellidoM.getText();
+                id = Integer.parseInt((String) modelTabla.getValueAt(jTDatos.getSelectedRow(), 0));
+                String marca = jTFNombre.getText();
+                String modelo = jTFApellidoP.getText();
+                String color = jTFApellidoM.getText();
                 modelos.actualiza_objeto_model(id, marca, modelo, color);
                 lee_datos();
             } catch (Exception e) {
@@ -160,7 +144,7 @@ public class JFConductor extends javax.swing.JFrame {
         }
         limpiar_campos();
     }
-    
+
     public JFConductor() {
         initComponents();
     }
@@ -407,7 +391,8 @@ public class JFConductor extends javax.swing.JFrame {
 
     private void jBConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConsultarActionPerformed
         // TODO add your handling code here:
-        lee_datos();
+       // lee_datos();
+       lee_datos();
     }//GEN-LAST:event_jBConsultarActionPerformed
 
     private void jBLimpiarTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarTablaActionPerformed

@@ -1,6 +1,5 @@
 package modelos;
-
-import GestorOperaciones.CQManager;
+import GestorOperaciones.CQMConductor;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -8,13 +7,14 @@ import java.util.ArrayList;
 public class CModelosConductor {
     
     //****************** Atributos***********
-    private final CQManager mngr = new CQManager();
+    private final CQMConductor mngr= new CQMConductor();
     private String consulta;
     //****************** Metodos*************
 
     public ArrayList<String[]> busca_objetos_model() throws SQLException {
         consulta = "SELECT * FROM conductor WHERE 1";
         return mngr.buscar_objetos(consulta);
+        
     }
 
     public ArrayList<String[]> busca_objeto_id_model(int valor) throws SQLException {
