@@ -19,7 +19,7 @@ public class CModelosOrigen {
     //****************** Metodos*************
 
     public ArrayList<String[]> busca_objetos_model() throws SQLException {
-        consulta = "SELECT id_origen, id_terminal FROM origen";
+        consulta = "SELECT origen.id_origen, terminal.nombre FROM origen,terminal WHERE origen.id_origen=terminal.id_terminal";
         return mngr.buscar_objetos(consulta);
     }
 

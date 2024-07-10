@@ -20,7 +20,13 @@ public class CModelosAutobus {
     //****************** Metodos*************
 
     public ArrayList<String[]> busca_objetos_model() throws SQLException {
-        consulta = "SELECT * FROM autobus WHERE 1";
+        consulta = "SELECT autobus.id_autobus,"
+                + "autobus.matricula,"
+                + "autobus.capacidad,"
+                + "autobus.año_servicio,"
+                + "autobus.id_ruta,"
+                + "modelo.nombre,"
+                + "autobus.mes_servicio FROM autobus,modelo WHERE autobus.id_autobus=modelo.id_modelo";
         return mngr.buscar_objetos(consulta);
     }
 
