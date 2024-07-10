@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package GestorOperaciones;
 
 import Conector.CConector;
@@ -8,10 +12,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
-//import javax.swing.JComboBox;
 import utilitarios.CUtilitarios;
 
-public class CQManager {
+/**
+ *
+ * @author yoong
+ */
+public class CQMAutobus {
     private Connection conn = null;
     private Statement stmt = null;
     private ResultSet rs = null;
@@ -37,7 +44,8 @@ public class CQManager {
                         rs.getString(3),
                         rs.getString(4),
                         rs.getString(5),
-                        rs.getString(6)});
+                        rs.getString(6)
+                    });
                 }
             }
         } catch (SQLException ex) {
@@ -112,10 +120,11 @@ public class CQManager {
     }
 
     public void imprime_resultados(ArrayList<String[]> resultados) {
-        for (int i = 0; i < resultados.size(); i++) {
-            System.out.println(i + " " + Arrays.toString(resultados.get(i)));
+        for (int i=0 ;i<resultados.size();i++) {
+            System.out.println(i + " "+ Arrays.toString(resultados.get(i)));
         }
         System.out.println("...................");
     }
-
+    
+    
 }
