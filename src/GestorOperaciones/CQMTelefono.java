@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package GestorOperaciones;
 
 import Conector.CConector;
@@ -8,10 +12,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
-//import javax.swing.JComboBox;
 import utilitarios.CUtilitarios;
 
-public class CQManager {
+/**
+ *
+ * @author Mayra Marlen
+ */
+public class CQMTelefono {
     private Connection conn = null;
     private Statement stmt = null;
     private ResultSet rs = null;
@@ -19,6 +26,7 @@ public class CQManager {
     private ArrayList<String[]> resultados;
 
     //***************** METODOS **************
+    
     public ArrayList<String[]> buscar_objetos(String consulta) throws SQLException {
         //1. Abrir la conexion 
         conn = conector.conectar();
@@ -34,10 +42,8 @@ public class CQManager {
                     resultados.add(new String[]{
                         rs.getString(1),
                         rs.getString(2),
-                        rs.getString(3),
-                        rs.getString(4),
-                        rs.getString(5),
-                        rs.getString(6)});
+                        rs.getString(3)                       
+                    });
                 }
             }
         } catch (SQLException ex) {
@@ -62,7 +68,7 @@ public class CQManager {
         return resultados;
     }
 
-    public boolean inserta_objeto(String consulta) throws SQLException {
+    public boolean inserta_objeto( String consulta) throws SQLException {
         //1. abrir la conexion
         conn = conector.conectar();
         //2.- ejecutar la query
@@ -112,10 +118,9 @@ public class CQManager {
     }
 
     public void imprime_resultados(ArrayList<String[]> resultados) {
-        for (int i = 0; i < resultados.size(); i++) {
-            System.out.println(i + " " + Arrays.toString(resultados.get(i)));
+        for (int i=0 ;i<resultados.size();i++) {
+            System.out.println(i + " "+ Arrays.toString(resultados.get(i)));
         }
         System.out.println("...................");
     }
-
 }
