@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package GestorOperaciones;
 
 import Conector.CConector;
@@ -14,10 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import utilitarios.CUtilitarios;
 
-/**
- *
- * @author yoong
- */
+
 public class CQMPasajero {
      private Connection conn = null;
     private Statement stmt = null;

@@ -38,7 +38,7 @@ public class CModelosEstado {
 
     public boolean actualiza_objeto_model(int id, String nombre) throws SQLException {
         consulta = "UPDATE estado SET nombre='"+nombre+"', " +
-                  "WHERE estado.id_estado= "+id;
+                  " WHERE estado.id_estado= "+id;
         return mngr.actualiza_objeto(consulta);
     }
     

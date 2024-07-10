@@ -13,7 +13,8 @@ public class CModelosPasajero {
     //****************** Metodos*************
 
     public ArrayList<String[]> busca_objetos_model() throws SQLException {
-        consulta = "SELECT pasajero.id_pasajero,pasajero.nombre,pasajero.apellido_p,pasajero.apellido_m,pasajero.correo, tipo.nombre FROM pasajero,tipo WHERE tipo.id_tipo = pasajero.id_tipo ";
+        consulta = "SELECT pasajero.id_pasajero,pasajero.nombre,pasajero.apellido_p,pasajero.apellido_m,pasajero.correo, tipo.nombre FROM pasajero,tipo"+
+                " WHERE tipo.id_tipo = pasajero.id_tipo ORDER BY tipo.id_tipo;";
         return mngr.buscar_objetos(consulta);
     }
 

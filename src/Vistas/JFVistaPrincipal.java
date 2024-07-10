@@ -36,6 +36,7 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jBBoleto1 = new javax.swing.JButton();
         jBRutas1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,6 +61,11 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
 
         jBBoleto.setBackground(new java.awt.Color(255, 204, 204));
         jBBoleto.setText("BOLETO");
+        jBBoleto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBBoletoActionPerformed(evt);
+            }
+        });
 
         jBRutas.setBackground(new java.awt.Color(255, 204, 204));
         jBRutas.setText("RUTAS");
@@ -96,15 +102,19 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(255, 204, 204));
+        jButton2.setText("Tipo");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(39, 39, 39))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(71, 71, 71)
@@ -124,10 +134,14 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
                             .addComponent(jBPasajero, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jBRutas, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jBRutas1))))
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1))
+                .addGap(39, 39, 39))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBBoleto, jBConductor, jBPasajero, jBRutas, jBRutas1, jButton1});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBBoleto, jBConductor, jBPasajero, jBRutas, jBRutas1, jButton1, jButton2});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,7 +151,9 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBPasajero)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jBPasajero)
+                            .addComponent(jButton2))
                         .addGap(31, 31, 31)
                         .addComponent(jBRutas)
                         .addGap(34, 34, 34)
@@ -155,7 +171,7 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBBoleto, jBConductor, jBPasajero, jBRutas, jBRutas1, jButton1});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBBoleto, jBConductor, jBPasajero, jBRutas, jBRutas1, jButton1, jButton2});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -213,6 +229,18 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jBRutas1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        JFTipo cliente = new JFTipo();
+        cliente.setVisible(true);
+        cliente.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jBBoletoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBoletoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBBoletoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -256,6 +284,7 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jBRutas;
     private javax.swing.JButton jBRutas1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
