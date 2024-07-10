@@ -4,7 +4,7 @@
  */
 package modelos;
 
-import GestorOperaciones.CQManager;
+import GestorOperaciones.CQMDestino;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class CModelosDestino {
     //****************** Atributos***********
-    private final CQManager mngr = new CQManager();
+    private final CQMDestino mngr = new CQMDestino();
     private String consulta;
     //****************** Metodos*************
 

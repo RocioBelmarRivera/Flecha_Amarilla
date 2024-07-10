@@ -225,6 +225,11 @@ public class JFTerminal extends javax.swing.JFrame {
         jButton5.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Salir");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -315,6 +320,14 @@ public class JFTerminal extends javax.swing.JFrame {
         // TODO add your handling code here:
         limpiar_tabla();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        JFVistaPrincipal principal = new JFVistaPrincipal();
+        principal.setVisible(true);
+        principal.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

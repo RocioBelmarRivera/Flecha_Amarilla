@@ -4,7 +4,7 @@
  */
 package modelos;
 
-import GestorOperaciones.CQManager;
+import GestorOperaciones.CQMOrigen;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -14,12 +14,12 @@ import java.util.ArrayList;
  */
 public class CModelosOrigen {
     //****************** Atributos***********
-    private final CQManager mngr = new CQManager();
+    private final CQMOrigen mngr = new CQMOrigen();
     private String consulta;
     //****************** Metodos*************
 
     public ArrayList<String[]> busca_objetos_model() throws SQLException {
-        consulta = "SELECT * FROM origen WHERE 1";
+        consulta = "SELECT id_origen, id_terminal FROM origen";
         return mngr.buscar_objetos(consulta);
     }
 

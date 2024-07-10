@@ -27,6 +27,7 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jToggleButton1 = new javax.swing.JToggleButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jBConductor = new javax.swing.JButton();
@@ -38,16 +39,25 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
         jBRutas1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jBConsultas = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+
+        jToggleButton1.setText("jToggleButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel1.setFont(new java.awt.Font("MS Reference Sans Serif", 3, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Palatino Linotype", 3, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("GRUPO FLECHA AMARILLA");
 
-        jBConductor.setBackground(new java.awt.Color(255, 204, 204));
+        jBConductor.setBackground(new java.awt.Color(102, 102, 102));
+        jBConductor.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 14)); // NOI18N
+        jBConductor.setForeground(new java.awt.Color(255, 255, 255));
         jBConductor.setText("CONDUCTOR");
         jBConductor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -60,7 +70,9 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jBBoleto.setBackground(new java.awt.Color(255, 204, 204));
+        jBBoleto.setBackground(new java.awt.Color(102, 102, 102));
+        jBBoleto.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 14)); // NOI18N
+        jBBoleto.setForeground(new java.awt.Color(255, 255, 255));
         jBBoleto.setText("BOLETO");
         jBBoleto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,10 +80,19 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jBRutas.setBackground(new java.awt.Color(255, 204, 204));
+        jBRutas.setBackground(new java.awt.Color(102, 102, 102));
+        jBRutas.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 14)); // NOI18N
+        jBRutas.setForeground(new java.awt.Color(255, 255, 255));
         jBRutas.setText("RUTAS");
+        jBRutas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBRutasActionPerformed(evt);
+            }
+        });
 
-        jBPasajero.setBackground(new java.awt.Color(255, 204, 204));
+        jBPasajero.setBackground(new java.awt.Color(102, 102, 102));
+        jBPasajero.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 14)); // NOI18N
+        jBPasajero.setForeground(new java.awt.Color(255, 255, 255));
         jBPasajero.setText("PASAJERO");
         jBPasajero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,7 +100,9 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(255, 204, 204));
+        jButton1.setBackground(new java.awt.Color(102, 102, 102));
+        jButton1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("SALIR");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -87,7 +110,9 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jBBoleto1.setBackground(new java.awt.Color(255, 204, 204));
+        jBBoleto1.setBackground(new java.awt.Color(102, 102, 102));
+        jBBoleto1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 14)); // NOI18N
+        jBBoleto1.setForeground(new java.awt.Color(255, 255, 255));
         jBBoleto1.setText("MARCA");
         jBBoleto1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,7 +120,9 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jBRutas1.setBackground(new java.awt.Color(255, 204, 204));
+        jBRutas1.setBackground(new java.awt.Color(102, 102, 102));
+        jBRutas1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 14)); // NOI18N
+        jBRutas1.setForeground(new java.awt.Color(255, 255, 255));
         jBRutas1.setText("ESTADO");
         jBRutas1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,7 +130,9 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 204, 204));
+        jButton2.setBackground(new java.awt.Color(102, 102, 102));
+        jButton2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Tipo");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,7 +140,9 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jBConsultas.setBackground(new java.awt.Color(255, 204, 204));
+        jBConsultas.setBackground(new java.awt.Color(102, 102, 102));
+        jBConsultas.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 14)); // NOI18N
+        jBConsultas.setForeground(new java.awt.Color(255, 255, 255));
         jBConsultas.setText("Consultas");
         jBConsultas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,70 +150,142 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setBackground(new java.awt.Color(102, 102, 102));
+        jButton3.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Origen");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setBackground(new java.awt.Color(102, 102, 102));
+        jButton4.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Autobus");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setBackground(new java.awt.Color(102, 102, 102));
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("Terminal");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setBackground(new java.awt.Color(102, 102, 102));
+        jButton6.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        jButton6.setText("Destino");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setBackground(new java.awt.Color(102, 102, 102));
+        jButton7.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        jButton7.setText("Servicio");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBBoleto1, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                    .addComponent(jBConductor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBBoleto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(92, 92, 92)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton4)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBPasajero)
+                            .addComponent(jBRutas1)
+                            .addComponent(jBRutas))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
+                                .addComponent(jButton1)
+                                .addGap(39, 39, 39))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(72, 72, 72)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton5)
+                                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBBoleto1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBConductor)
-                            .addComponent(jBBoleto))
-                        .addGap(92, 92, 92)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBPasajero, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jBRutas, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jBRutas1))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(39, 39, 39))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBConsultas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(92, 92, 92))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(61, 61, 61))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBBoleto, jBConductor, jBPasajero, jBRutas, jBRutas1, jButton1, jButton2});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBBoleto, jBBoleto1, jBConductor, jBConsultas, jBPasajero, jBRutas, jBRutas1, jButton1, jButton2, jButton3, jButton4, jButton5});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBRutas)
-                            .addComponent(jBConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(34, 34, 34)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBRutas1)
-                            .addComponent(jBBoleto1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBBoleto, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBPasajero)
-                            .addComponent(jButton2))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(jBRutas)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBPasajero)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jBRutas1))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton7)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton5)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(jButton4))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jBConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(32, 32, 32))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jBBoleto, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBBoleto1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jBConductor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jButton1)
-                .addGap(32, 32, 32))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton6)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBBoleto, jBConductor, jBPasajero, jBRutas, jBRutas1, jButton1, jButton2});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBBoleto, jBBoleto1, jBConductor, jBConsultas, jBPasajero, jBRutas, jBRutas1, jButton1, jButton2, jButton3, jButton4, jButton5});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -208,6 +311,10 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
 
     private void jBConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConductorActionPerformed
         // TODO add your handling code here:
+        JFPasajero vpasajero = new JFPasajero();
+        vpasajero.setVisible(true);
+        vpasajero.setLocationRelativeTo(null);
+        this.dispose();
         
     }//GEN-LAST:event_jBConductorActionPerformed
 
@@ -250,15 +357,67 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
 
     private void jBBoletoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBoletoActionPerformed
         // TODO add your handling code here:
+        JFBoleto vboleto = new JFBoleto();
+        vboleto.setVisible(true);
+        vboleto.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_jBBoletoActionPerformed
 
     private void jBConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConsultasActionPerformed
         // TODO add your handling code here:
-        JFConsultas cliente = new JFConsultas();
-        cliente.setVisible(true);
-        cliente.setLocationRelativeTo(null);
-        this.dispose();
+        
+        
     }//GEN-LAST:event_jBConsultasActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        JFAutobus vbus = new JFAutobus();
+        vbus.setVisible(true);
+        vbus.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        Origen vorigen = new Origen();
+        vorigen.setVisible(true);
+        vorigen.setLocationRelativeTo(null);
+        this.dispose();
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jBRutasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRutasActionPerformed
+        // TODO add your handling code here:
+        JFRutas vruta = new JFRutas();
+        vruta.setVisible(true);
+        vruta.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_jBRutasActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        JFTerminal vter = new JFTerminal();
+        vter.setVisible(true);
+        vter.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        Destino vdes = new Destino();
+        vdes.setVisible(true);
+        vdes.setLocationRelativeTo(null);
+        this.dispose();
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        JFServicio vser = new JFServicio();
+        vser.setVisible(true);
+        vser.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -305,7 +464,13 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jBRutas1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }
