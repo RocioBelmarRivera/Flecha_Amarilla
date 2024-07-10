@@ -4,6 +4,7 @@
  */
 package modelos;
 
+import GestorOperaciones.CQMServicio;
 import GestorOperaciones.CQManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 public class CModelosServicio {
     
     //****************** Atributos***********
-    private final CQManager mngr = new CQManager();
+    private final CQMServicio mngr = new CQMServicio();
     private String consulta;
     //****************** Metodos*************
 
