@@ -49,6 +49,7 @@ public class JFConsulta15 extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
         jLabel2.setText("el cual un camión llevara pasajeros con descuento.  ");
 
+        jTable1.setBackground(new java.awt.Color(153, 255, 153));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
