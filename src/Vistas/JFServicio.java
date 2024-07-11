@@ -196,6 +196,11 @@ public class JFServicio extends javax.swing.JFrame {
                 "Id", "Nombre"
             }
         ));
+        jTservicio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTservicioMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTservicio);
 
         jButton1.setBackground(new java.awt.Color(0, 153, 102));
@@ -346,6 +351,11 @@ public class JFServicio extends javax.swing.JFrame {
         principal.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTservicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTservicioMouseClicked
+        // TODO add your handling code here:
+        lee_fila_seleccionada();
+    }//GEN-LAST:event_jTservicioMouseClicked
 
     /**
      * @param args the command line arguments

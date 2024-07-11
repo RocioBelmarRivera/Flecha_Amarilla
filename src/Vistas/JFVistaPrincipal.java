@@ -131,7 +131,7 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
         });
 
         jButton2.setBackground(new java.awt.Color(102, 102, 102));
-        jButton2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Bauhaus 93", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Tipo");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -141,7 +141,7 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
         });
 
         jBConsultas.setBackground(new java.awt.Color(102, 102, 102));
-        jBConsultas.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 14)); // NOI18N
+        jBConsultas.setFont(new java.awt.Font("Bauhaus 93", 0, 14)); // NOI18N
         jBConsultas.setForeground(new java.awt.Color(255, 255, 255));
         jBConsultas.setText("Consultas");
         jBConsultas.addActionListener(new java.awt.event.ActionListener() {
@@ -171,6 +171,7 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
         });
 
         jButton5.setBackground(new java.awt.Color(102, 102, 102));
+        jButton5.setFont(new java.awt.Font("Bauhaus 93", 0, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Terminal");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -180,7 +181,8 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
         });
 
         jButton6.setBackground(new java.awt.Color(102, 102, 102));
-        jButton6.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        jButton6.setFont(new java.awt.Font("Bauhaus 93", 0, 14)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Destino");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,7 +191,8 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
         });
 
         jButton7.setBackground(new java.awt.Color(102, 102, 102));
-        jButton7.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        jButton7.setFont(new java.awt.Font("Bauhaus 93", 0, 14)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Servicio");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -367,6 +370,10 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
 
     private void jBConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConsultasActionPerformed
         // TODO add your handling code here:
+        JFConsultas vconn = new JFConsultas();
+        vconn.setVisible(true);
+        vconn.setLocationRelativeTo(null);
+        this.dispose();
         
         
     }//GEN-LAST:event_jBConsultasActionPerformed

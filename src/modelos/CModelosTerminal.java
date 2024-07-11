@@ -36,9 +36,11 @@ public class CModelosTerminal {
 
 
     public boolean actualiza_objeto_model(int id, String nombre) throws SQLException {
-        consulta = "UPDATE terminal SET nombre='"+nombre+"', " +
-                "WHERE terminal.id_terminal= "+id;
+        consulta = "UPDATE terminal SET nombre='"+nombre+"' " +
+                " WHERE id_terminal= "+id;
         return mngr.actualiza_objeto(consulta);
     }
+    
+     
     
 }

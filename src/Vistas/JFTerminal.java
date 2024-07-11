@@ -176,9 +176,14 @@ public class JFTerminal extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "id", "id_direccion", "nombre"
+                "id", "nombre", "id_direccion"
             }
         ));
+        jTerminal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTerminalMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTerminal);
 
         jButton1.setBackground(new java.awt.Color(51, 0, 51));
@@ -328,6 +333,11 @@ public class JFTerminal extends javax.swing.JFrame {
         principal.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTerminalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTerminalMouseClicked
+        // TODO add your handling code here:
+        lee_fila_seleccionada();
+    }//GEN-LAST:event_jTerminalMouseClicked
 
     /**
      * @param args the command line arguments
