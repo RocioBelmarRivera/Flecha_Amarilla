@@ -368,6 +368,10 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
 
     private void jBConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConsultasActionPerformed
         // TODO add your handling code here:
+        JFConsultas vconn = new JFConsultas();
+        vconn.setVisible(true);
+        vconn.setLocationRelativeTo(null);
+        this.dispose();
         
         
     }//GEN-LAST:event_jBConsultasActionPerformed
