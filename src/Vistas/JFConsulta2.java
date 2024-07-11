@@ -4,12 +4,63 @@
  */
 package Vistas;
 
+import GestorOperaciones.CQMConsultas;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import modelos.CMConsultas;
+import modelos.CModelosCon1;
+
 /**
  *
  * @author Mayra Marlen
  */
 public class JFConsulta2 extends javax.swing.JFrame {
 
+private CQMConsultas mngr = new CQMConsultas();
+    CMConsultas modelos = new CMConsultas();
+    ArrayList<String[]> resultados = new ArrayList<>();
+    ArrayList<String[]> tipo = new ArrayList<>();
+    int numero;
+    
+    private void limpiar_tabla() {
+        DefaultTableModel modelTabla
+                = (DefaultTableModel) jTable1.getModel();
+        for (int i = (modelTabla.getRowCount() - 1); i >= 0; i--) {
+            modelTabla.removeRow(i);
+        }
+    }
+    private void lee_datos() {
+        //numero = 1;
+        //2. obtener el modelo de la tabla de datos 
+        DefaultTableModel modelTabla
+                = (DefaultTableModel) jTable1.getModel();
+        try {
+            //3.leer los datos
+            resultados = modelos.busca_objetos_model();
+            //4. limpiar tabla
+            limpiar_tabla();
+            //5.asignar datos a la tabla
+            for (String[] resultado : resultados) {
+                //añadirle datos al modelo de la tabla
+                modelTabla.addRow(new Object[]{
+                    resultado[0],
+                    resultado[1],
+                    resultado[2],
+                    resultado[3],
+                    resultado[4],
+                    resultado[5],
+                    resultado[6]
+                });
+
+            }
+        } catch (SQLException e) {
+        }
+    
+        
+            
+        }
+    
     /**
      * Creates new form JFConsulta2
      */
@@ -32,6 +83,7 @@ public class JFConsulta2 extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        Mostrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,16 +105,23 @@ public class JFConsulta2 extends javax.swing.JFrame {
         jTable1.setBackground(new java.awt.Color(153, 204, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "matricula", "numeroEconomico", "año", "fechaEntrada_Servicio"
+                "nombre", "nombre", "id_autobus", "matricula", "capacidad", "año_servicio", "mes_servicio"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+
+        Mostrar.setText("Mostrar");
+        Mostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MostrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -78,10 +137,12 @@ public class JFConsulta2 extends javax.swing.JFrame {
                         .addComponent(jLabel2)))
                 .addContainerGap(109, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Mostrar, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(36, 36, 36))
         );
         jPanel1Layout.setVerticalGroup(
@@ -89,17 +150,19 @@ public class JFConsulta2 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(63, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(Mostrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)
-                        .addGap(52, 52, 52))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(46, Short.MAX_VALUE))))
+                        .addGap(52, 52, 52))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -123,6 +186,11 @@ public class JFConsulta2 extends javax.swing.JFrame {
         vconnsul.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void MostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarActionPerformed
+        // TODO add your handling code here:
+        lee_datos();
+    }//GEN-LAST:event_MostrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,6 +228,7 @@ public class JFConsulta2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Mostrar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

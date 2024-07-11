@@ -46,8 +46,7 @@ private CQManager mngr = new CQManager();
                     resultado[1],
                     resultado[2],
                     resultado[3],
-                    resultado[4],
-                    resultado[5]
+                    resultado[4]
                 });
 
             }

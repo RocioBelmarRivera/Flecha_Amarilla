@@ -1,23 +1,54 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Vistas;
 
+import GestorOperaciones.CQMConsultas;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import modelos.CMConsultas;
 
-/**
- *
- * @author Mayra Marlen
- */
+
 public class JFConsulta15 extends javax.swing.JFrame {
 
+   private CQMConsultas mngr = new CQMConsultas();
+    CMConsultas modelos = new CMConsultas();
+    ArrayList<String[]> resultados = new ArrayList<>();
+    ArrayList<String[]> tipo = new ArrayList<>();
+    int numero;
     
+    private void limpiar_tabla() {
+        DefaultTableModel modelTabla
+                = (DefaultTableModel) jTable1.getModel();
+        for (int i = (modelTabla.getRowCount() - 1); i >= 0; i--) {
+            modelTabla.removeRow(i);
+        }
+    }
+    private void lee_datos() {
+        //numero = 1;
+        //2. obtener el modelo de la tabla de datos 
+        DefaultTableModel modelTabla
+                = (DefaultTableModel) jTable1.getModel();
+        try {
+            //3.leer los datos
+            resultados = modelos.busca_objetos_model14();
+            //4. limpiar tabla
+            limpiar_tabla();
+            //5.asignar datos a la tabla
+            for (String[] resultado : resultados) {
+                //añadirle datos al modelo de la tabla
+                modelTabla.addRow(new Object[]{
+                    resultado[0]
+                });
+
+            }
+        } catch (SQLException e) {
+        }
     
-    /**
-     * Creates new form JFConsulta15
-     */
+        
+            
+        } 
+    
+   
     public JFConsulta15() {
         initComponents();
     }
@@ -64,6 +95,11 @@ public class JFConsulta15 extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Mostrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("salir");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -123,14 +159,16 @@ public class JFConsulta15 extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -143,6 +181,11 @@ public class JFConsulta15 extends javax.swing.JFrame {
         vconnsul.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        lee_datos();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
