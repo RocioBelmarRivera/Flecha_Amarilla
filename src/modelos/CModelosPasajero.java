@@ -3,7 +3,7 @@ package modelos;
 import GestorOperaciones.CQMPasajero;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.JComboBox;
+//import javax.swing.JComboBox;
 
 public class CModelosPasajero {
 

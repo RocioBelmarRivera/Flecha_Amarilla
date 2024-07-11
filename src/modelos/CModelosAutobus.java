@@ -35,9 +35,9 @@ public class CModelosAutobus {
         return mngr.buscar_objetos(consulta);
     }
 
-    public boolean inserta_objeto_model(String matricula,String cap,String fecha) throws SQLException {
-        consulta = "INSERT INTO `autobus`(`id`, `matricula`, `capacidad`, `fecha_servicio` )"
-                + "VALUES (null,'" + matricula + "','" + cap + "','" + fecha +"');";
+    public boolean inserta_objeto_model(String matricula,String cap,int fecha,int ruta, int modelo, int mes) throws SQLException {
+        consulta = "INSERT INTO `autobus`(`id_autobus`, `matricula`, `capacidad`, `año_servicio`,`id_ruta`,`id_modelo`,`mes_servicio` )"
+                + "VALUES (null,'" + matricula + "','" + cap + "'," + fecha +","+ruta+","+modelo+","+mes+");";
         return mngr.inserta_objeto(consulta);
     }
 
@@ -47,6 +47,18 @@ public class CModelosAutobus {
                  cap+"', año_servicio = '"+ fecha +
                 "' WHERE id_autobus= "+id;
         return mngr.actualiza_objeto(consulta);
+    }
+    
+    public ArrayList<String[]> carga_tipo_modelo() throws SQLException {
+         consulta="select modelo.id_modelo, modelo.nombre from modelo ";
+         return mngr.buscar_objetos3(consulta);
+         
+    }
+    
+    public ArrayList<String[]> carga_tipo_ruta() throws SQLException {
+         consulta="select ruta.id_ruta, ruta.km from ruta ";
+         return mngr.buscar_objetos2(consulta);
+         
     }
     
 }
