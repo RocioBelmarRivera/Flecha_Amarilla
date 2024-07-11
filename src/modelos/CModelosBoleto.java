@@ -1,19 +1,27 @@
 
 package modelos;
 
-import GestorOperaciones.CQManager;
+import GestorOperaciones.CQMBoleto;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 
 public class CModelosBoleto {
       //****************** Atributos***********
-    private final CQManager mngr = new CQManager();
+    private final CQMBoleto mngr = new CQMBoleto();
     private String consulta;
     //****************** Metodos*************
 
     public ArrayList<String[]> busca_objetos_model() throws SQLException {
-        consulta = "SELECT * FROM boleto WHERE 1";
+        consulta = "SELECT boleto.id_boleto,"
+                + "boleto.id_ruta,"
+                + "pasajero.nombre,"
+                + "servicio.nombre,"
+                + "boleto.dia,"
+                + "boleto.mes,"
+                + "boleto.año,"
+                + "boleto.cantidad"
+                + " FROM boleto,pasajero,servicio WHERE boleto.id_boleto=pasajero.id_pasajero=servicio.id_servicio ";
         return mngr.buscar_objetos(consulta);
     }
 

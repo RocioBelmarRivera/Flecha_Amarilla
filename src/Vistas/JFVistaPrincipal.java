@@ -311,9 +311,11 @@ public class JFVistaPrincipal extends javax.swing.JFrame {
 
     private void jBConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConductorActionPerformed
         // TODO add your handling code here:
-        JFConductor vpasajero = new JFConductor();
-        vpasajero.setVisible(true);
-        vpasajero.setLocationRelativeTo(null);
+
+        JFConductor vcon = new JFConductor();
+        vcon.setVisible(true);
+        vcon.setLocationRelativeTo(null);
+
         this.dispose();
         
     }//GEN-LAST:event_jBConductorActionPerformed

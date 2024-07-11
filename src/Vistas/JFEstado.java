@@ -109,7 +109,7 @@ public class JFEstado extends javax.swing.JFrame {
             try {
                  id = Integer.parseInt((String) modelTabla.getValueAt(jTEstado.getSelectedRow(), 0));
                 String nombre = jTFNombre.getText();
-                modelos.actualiza_objeto_model(id, nombre);
+                modelos.actualiza_objeto_model(id,nombre);
                 lee_datos();
             } catch (Exception e) {
             }
