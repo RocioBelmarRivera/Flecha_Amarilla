@@ -42,9 +42,15 @@ public class CModelosServicio {
     }
 
     public boolean actualiza_objeto_model(int id, String nombre) throws SQLException {
-        consulta = "UPDATE conductor SET nombre='"+nombre+"', " +
-                "WHERE servicio.id_servicio= "+id;
+        consulta = "UPDATE servicio SET nombre='"+nombre+"' " +
+                " WHERE id_servicio= "+id;
         return mngr.actualiza_objeto(consulta);
     }
+    
+    /*public boolean actualiza_objeto_model(int id, String nombre) throws SQLException {
+        consulta = "UPDATE estado SET nombre='"+nombre+"' " +
+                  " WHERE id_estado= "+id;
+        return mngr.actualiza_objeto(consulta);
+    }*/
     
 }

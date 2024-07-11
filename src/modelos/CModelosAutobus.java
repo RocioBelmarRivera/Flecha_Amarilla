@@ -42,9 +42,5 @@ public class CModelosAutobus {
                 "' WHERE id_autobus= "+id;
         return mngr.actualiza_objeto(consulta);
     }
-    /* public boolean actualiza_objeto_model(int id, String nombre) throws SQLException {
-        consulta = "UPDATE estado SET nombre='"+nombre+"' " +
-                  " WHERE id_estado= "+id;
-        return mngr.actualiza_objeto(consulta);
-    }*/
+    
 }
