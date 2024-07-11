@@ -141,7 +141,7 @@ public class CQMTerminal {
         return false;
 
     }
-
+    
     public boolean actualiza_objeto(String consulta) throws SQLException {
         conn = conector.conectar();
         try {

@@ -37,10 +37,14 @@ public class CModelosAutobus {
 
 
     public boolean actualiza_objeto_model(int id, String matricula,String cap,String fecha) throws SQLException {
-        consulta = "UPDATE autobus SET matricula='"+matricula+"', " +
-                " capacidad = '"+ cap+"', "+
-                "WHERE autobus.id_autobus= "+id;
+        consulta = "UPDATE autobus SET matricula='"+matricula+"', capacidad = '" +
+                 cap+"', año_servicio = '"+ fecha +
+                "' WHERE id_autobus= "+id;
         return mngr.actualiza_objeto(consulta);
     }
-    
+    /* public boolean actualiza_objeto_model(int id, String nombre) throws SQLException {
+        consulta = "UPDATE estado SET nombre='"+nombre+"' " +
+                  " WHERE id_estado= "+id;
+        return mngr.actualiza_objeto(consulta);
+    }*/
 }
