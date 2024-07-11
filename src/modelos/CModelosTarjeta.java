@@ -1,7 +1,7 @@
 
 package modelos;
 
-import GestorOperaciones.CQMConductor;
+import GestorOperaciones.CQMTarjeta;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -12,37 +12,37 @@ import java.util.ArrayList;
 public class CModelosTarjeta {
     
     //****************** Atributos***********
-    private final CQMConductor mngr= new CQMConductor();
+    private final CQMTarjeta mngr= new CQMTarjeta();
     private String consulta;
     //****************** Metodos*************
 
     public ArrayList<String[]> busca_objetos_model() throws SQLException {
-        consulta = "SELECT * FROM conductor WHERE 1";
+        consulta = "SELECT * FROM tarjeta WHERE 1";
         return mngr.buscar_objetos(consulta);
         
     }
 
     public ArrayList<String[]> busca_objeto_id_model(int valor) throws SQLException {
-        consulta = "SELECT * FROM conductor WHERE conductor.id_conductor = " + valor;
+        consulta = "SELECT * FROM tarjeta WHERE tarjeta.id_conductor = " + valor;
         return mngr.buscar_objetos(consulta);
     }
 
-    public boolean inserta_objeto_model(String nombre, String apellidop, String apellidom) throws SQLException {
-        consulta = "INSERT INTO `conductor`(`id_conductor`, `nombre`, `apellido_p`, `apellido_m`)"
-                + "VALUES (null,'" + nombre + "','" + apellidop + "','" + apellidom + "');";
+    public boolean inserta_objeto_model(String nombre, String fechaEX, String tarjeta) throws SQLException {
+        consulta = "INSERT INTO `tarjeta`(`id_tarjeta`, `nombre`, `fecha_expiracion`, `tarjeta`,`id_pago` )"
+                + "VALUES (null,'" + nombre + "','" + fechaEX + "','" + tarjeta + "');";
         return mngr.inserta_objeto(consulta);
     }
 
     public boolean elimina_objeto_model(int id) throws SQLException {
-        consulta = "DELETE  FROM conductor WHERE conductor.id_conductor = " + id;
+        consulta = "DELETE  FROM tarjeta WHERE tarjeta.id_tarjeta = " + id;
         return mngr.elimina_objeto(consulta);
     }
 
-    public boolean actualiza_objeto_model(int id, String nombre,String apellidop,String apellidom) throws SQLException {
-        consulta = "UPDATE conductor SET nombre='"+nombre+"', " +
-                " apellido_p = '"+ apellidop+"', "+
-                " apellido_m = '"+apellidom+"' " +
-                "WHERE conductor.id_conductor= "+id;
+    public boolean actualiza_objeto_model(int id, String nombre,String fechaEx,String tarjeta) throws SQLException {
+        consulta = "UPDATE tarjeta SET nombre='"+nombre+"', " +
+                " fecha_expiracion = '"+ fechaEx+"', "+
+                " tarjeta = '"+tarjeta+"' " +
+                "WHERE tarjeta.id_tarjeta= "+id;
         return mngr.actualiza_objeto(consulta);
     }
     

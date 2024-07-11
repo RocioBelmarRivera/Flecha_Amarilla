@@ -4,11 +4,157 @@
  */
 package Vistas;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import modelos.CModelosRuta;
+import utilitarios.CUtilitarios;
+
 /**
  *
  * @author rocio
  */
 public class JFRutas extends javax.swing.JFrame {
+
+    //permitir llamar las cconsultas de los modelos
+    CModelosRuta modelos = new CModelosRuta();
+    ArrayList<String[]> resultados = new ArrayList<>();
+    int numero;
+
+    //***************************METODOS PROPIOS****************************
+    private void limpiar_campos() {
+        jTkm.setText("");
+        jTcosto.setText("");
+        jTdia.setText("");
+        jTmes.setText("");
+        jTanio.setText("");
+        jTorigen.setText("");
+        jTdestino.setText("");
+    }
+
+    private boolean campos_vacios() {
+        return (jTkm.getText().isEmpty()
+                || jTcosto.getText().isEmpty()
+                || jTdia.getText().isEmpty()
+                || jTmes.getText().isEmpty()
+                || jTanio.getText().isEmpty()
+                || jTorigen.getText().isEmpty()
+                || jTdestino.getText().isEmpty());
+
+    }
+
+    private void limpiar_tabla() {
+        DefaultTableModel modelTabla
+                = (DefaultTableModel) jTable1.getModel();
+        for (int i = (modelTabla.getRowCount() - 1); i >= 0; i--) {
+            modelTabla.removeRow(i);
+        }
+    }
+
+    private void lee_datos() {
+        numero = 1;
+        //2. obtener el modelo de la tabla de datos 
+        DefaultTableModel modelTabla
+                = (DefaultTableModel) jTable1.getModel();
+        try {
+            //3.leer los datos
+            resultados = modelos.busca_objetos_model();
+            //4. limpiar tabla
+            limpiar_tabla();
+            //5.asignar datos a la tabla
+            for (String[] resultado : resultados) {
+                //añadirle datos al modelo de la tabla
+                modelTabla.addRow(new Object[]{
+                    resultado[0],
+                    resultado[1],
+                    resultado[2],
+                    resultado[3],
+                    resultado[4],
+                    resultado[5],
+                    resultado[6]});
+
+            }
+        } catch (SQLException e) {
+        }
+
+    }
+
+    private void inserta_datos() {
+
+        if (campos_vacios()) {
+            CUtilitarios.msg_adver("hay campos vacios", "Inserta datos");
+
+        } else {
+            //1.obteniendo los datos del cuadro de texto
+            String km = jTkm.getText();
+            String costo = jTcosto.getText();
+            String dia = jTdia.getText();
+            String mes = jTmes.getText();
+            String anio = jTanio.getText();
+            String origen = jTorigen.getText();
+            String destino = jTdestino.getText();
+            //2.inserta datos
+            try {
+                if (modelos.inserta_objeto_model(km, costo, dia, mes, anio)) {
+                    //CUtilitarios.msg("insercion correcta", "inserta dato");
+                } else {
+                    CUtilitarios.msg_adver("problemas al insertar", "insertar datos");
+                }
+                limpiar_campos();
+                lee_datos();
+            } catch (Exception e) {
+            }
+        }
+
+    }
+
+    private int lee_fila_seleccionada() {
+        int id = -1;
+        DefaultTableModel modelTabla
+                = (DefaultTableModel) jTable1.getModel();
+        if (modelTabla.getRowCount() != 0) {//tabla con filas
+            if (jTable1.getSelectedRow() != -1) {
+                id = Integer.parseInt((String) modelTabla.getValueAt(jTable1.getSelectedRow(), 0));
+                jTkm.setText((String) modelTabla.getValueAt(jTable1.getSelectedRow(), 1));
+                jTcosto.setText((String) modelTabla.getValueAt(jTable1.getSelectedRow(), 2));
+                jTdia.setText((String) modelTabla.getValueAt(jTable1.getSelectedRow(), 3));
+                jTmes.setText((String) modelTabla.getValueAt(jTable1.getSelectedRow(), 4));
+                jTanio.setText((String) modelTabla.getValueAt(jTable1.getSelectedRow(), 5));
+                jTorigen.setText((String) modelTabla.getValueAt(jTable1.getSelectedRow(), 6));
+                jTdestino.setText((String) modelTabla.getValueAt(jTable1.getSelectedRow(), 7));
+
+            }
+
+        }
+        return id;
+    }
+
+    private void actualiza_datos() {
+        int id;
+        DefaultTableModel modelTabla
+                = (DefaultTableModel) jTable1.getModel();
+        if (campos_vacios()) {
+            CUtilitarios.msg_adver("campos vacios", "actualizar datos");
+
+        } else {
+
+            try {
+                id = Integer.parseInt((String) modelTabla.getValueAt(jTable1.getSelectedRow(), 0));
+                String km = jTkm.getText();
+                String costo = jTcosto.getText();
+                String dia = jTdia.getText();
+                String mes = jTmes.getText();
+                String anio = jTanio.getText();
+                String origen = jTorigen.getText();
+                String destino = jTdestino.getText();
+                modelos.actualiza_objeto_model(id, km, costo, dia, mes, anio);
+                lee_datos();
+            } catch (Exception e) {
+            }
+
+        }
+
+    }
 
     /**
      * Creates new form JFRutas
@@ -35,13 +181,13 @@ public class JFRutas extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        jTmes = new javax.swing.JTextField();
+        jTkm = new javax.swing.JTextField();
+        jTdia = new javax.swing.JTextField();
+        jTcosto = new javax.swing.JTextField();
+        jTanio = new javax.swing.JTextField();
+        jTdestino = new javax.swing.JTextField();
+        jTorigen = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
@@ -85,9 +231,9 @@ public class JFRutas extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(51, 51, 51));
         jLabel8.setText("Destino");
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        jTanio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                jTanioActionPerformed(evt);
             }
         });
 
@@ -103,27 +249,52 @@ public class JFRutas extends javax.swing.JFrame {
                 "Km", "Costo", "Dia", "Mes", "Año", "Origen", "Destino"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setBackground(new java.awt.Color(102, 153, 0));
         jButton1.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Consultar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(102, 153, 0));
         jButton2.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Actualizar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(102, 153, 0));
         jButton3.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Limpiar tabla");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(102, 153, 0));
         jButton4.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Salir");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -133,34 +304,34 @@ public class JFRutas extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTkm, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(16, 16, 16)
                                 .addComponent(jLabel2)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTcosto, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTdia, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTmes, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTanio, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTorigen, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTdestino, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -197,13 +368,13 @@ public class JFRutas extends javax.swing.JFrame {
                     .addComponent(jLabel8))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTmes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTdestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTorigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTanio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTkm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTdia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTcosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -234,9 +405,38 @@ public class JFRutas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void jTanioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTanioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_jTanioActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        lee_datos();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        actualiza_datos();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        limpiar_tabla();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        JFVistaPrincipal cliente = new JFVistaPrincipal();
+        cliente.setVisible(true);
+        cliente.setLocationRelativeTo(null);
+        this.dispose();
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        lee_fila_seleccionada();
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -289,12 +489,12 @@ public class JFRutas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTanio;
+    private javax.swing.JTextField jTcosto;
+    private javax.swing.JTextField jTdestino;
+    private javax.swing.JTextField jTdia;
+    private javax.swing.JTextField jTkm;
+    private javax.swing.JTextField jTmes;
+    private javax.swing.JTextField jTorigen;
     // End of variables declaration//GEN-END:variables
 }
